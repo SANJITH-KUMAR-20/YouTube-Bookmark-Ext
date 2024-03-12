@@ -33,7 +33,7 @@
     currentVideoBookmarks = await fetchBookmarks();
     if(!bookmarkBtnExists) {
         const bookmarkBtn = document.createElement("img");
-        bookmarkBtn.src = chrome.runtime.getURL("assets/bookmark.png");
+        bookmarkBtn.src = chrome.runtime.getURL("assets\bookmark.png");
         bookmarkBtn.ClassName = "ytp-button  " + "bookmark-btn";
         bookmarkBtn.title = "Click to add bookmark";
 
@@ -47,6 +47,7 @@
    }
    const addNewBookmarkEventHandler = async () => {
     const currentTime = youtubePlayer.currentTime;
+    console.log(currentTime);
     const newBookmark = {
         time: currentTime,
         desc : "Bookmark at " + getTime(currentTime),
@@ -57,10 +58,10 @@
     currentVideoBookmarks = await fetchBookmarks();
    }
 
-   const getTime = (t) =>{
+   const getTime = t =>{
     var date = new Date(0);
     date.setSeconds(t);
-    return date.toISOString().substr(11, 8);
+    return date.toISOString().substring(11, 8);
    }
 
    newVideoLoaded();

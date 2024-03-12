@@ -1,4 +1,10 @@
-import { getCurrentTab } from "./utils.js";
+// import { getCurrentTab} from "./utils.js";
+
+async function getCurrentTab() {
+    let queryOptions = {active : true, currentWindow: true};
+    let [tab] = await chrome.tabs.query(queryOptions);
+    return tab;
+}
 
 const addNewBookmark = (bookmark, bookmarksElement) => {
     const bookmarkTitleElement = document.createElement("div");
@@ -71,7 +77,7 @@ const setBookmarkAttributes = (src, eventListener, controlParentElement) => {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const activeTab = getCurrentTab();
+    const activeTab = await getCurrentTab();
     const queryParameters = activeTab.url.split("?")[1];
     const urlParameters = new URLSearchParams(queryParameters);
 
